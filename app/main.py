@@ -18,7 +18,7 @@ async def lifespan(app):
         except asyncio.CancelledError: pass
         await tg.shutdown()
 
-app = FastAPI(title="Telegram Promo Manager", lifespan=lifespan)
+app = FastAPI(title="Telegram Promotion Manager", lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 tpl = Jinja2Templates(directory="app/templates")
 

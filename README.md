@@ -1,6 +1,6 @@
-# Telegram Promo Manager
+# Telegram Promotion Manager
 
-Local-first admin console for Telegram **user-account** automation: schedule one promo message to many groups, and auto-reply to private messages with an Ollama model. Run it on your own computer and manage everything from a web page.
+Local-first admin console for Telegram **user-account** automation: schedule one promotion message to many groups, and auto-reply to private messages with an Ollama model. Run it on your own computer and manage everything from a web page.
 
 ![Architecture](docs/images/architecture.png)
 
@@ -34,4 +34,4 @@ Local Ollama instead of cloud: set `OLLAMA_URL=http://127.0.0.1:11434`, pull a m
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for the code map and dev workflow. Issues and PRs are welcome.
 
 ## License and credit
-[MIT](LICENSE). You may use, modify and sell this freely, but you must keep the copyright notice. If you build on this project, please credit **[Amaan (@Amaan9136)](https://github.com/Amaan9136)**, for example: *"Based on Telegram Promo Manager by Amaan9136"* in your README, About page or docs.
+[MIT](LICENSE). You may use, modify and sell this freely, but you must keep the copyright notice. If you build on this project, please credit **[Amaan (@Amaan9136)](https://github.com/Amaan9136)**, for example: *"Based on Telegram Promotion Manager by Amaan9136"* in your README, About page or docs.
