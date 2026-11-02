@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-load_dotenv(override=True)
+load_dotenv()
 def _i(k, d):
     try: return int(os.getenv(k) or d)
     except ValueError: raise SystemExit(f"{k} must be an integer")
