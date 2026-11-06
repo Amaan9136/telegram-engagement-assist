@@ -6,7 +6,7 @@ Local-first admin console for Telegram **user-account** automation: schedule one
 
 ## How it works
 - **Broadcast:** you set a list of messages, *one* repeat delay (default 10 min, any duration) and a list of destination groups. Each cycle sends to every enabled group, picking messages at random and using every message once before any repeats, then waits the delay.
-- **Private messages:** a new user gets your greeting, then an AI reply built from your system prompt plus bounded recent history. Every conversation is visible in the admin inbox, and AI can be switched off globally or per user.
+- **Private messages:** a new user gets your greeting, then an AI reply built from your system prompt plus bounded recent history. Optional follow-up replies (add or remove them in the admin page) answer the user's next replies in order before the AI takes over. Every conversation is visible in the admin inbox, and AI can be switched off globally or per user.
 - **State:** `data/store.json` (state), `data/log.json` (activity log), `.env` (secrets), `sessions/` (Telegram logins). All are gitignored.
 
 | Broadcast cycle | Private message flow |

@@ -15,6 +15,7 @@
 <section><h2>AI &amp; Settings</h2>
 <div class="row"><label class="inline"><input type="checkbox" id="ai"> AI auto-reply</label><label class="inline"><input type="checkbox" id="gon"> Send greeting to new users</label></div>
 <label>Global greeting</label><textarea id="greeting" rows="2"></textarea>
+<label>Follow-up auto replies (one per user reply after the greeting, in order; then the AI replies as usual)</label><div id="fmsgs"></div><div class="row"><button onclick="addM('fmsgs','fm')">Add follow-up</button></div>
 <label>AI system prompt</label><textarea id="prompt" rows="9"></textarea><button onclick="$('prompt').value=S.default_prompt">Reset prompt to default</button>
 <div class="row"><input id="url" placeholder="Ollama URL"><input id="model" placeholder="Model"><input id="hist" type="number" min="1" placeholder="History limit"></div>
 <p class="hint" id="key"></p>

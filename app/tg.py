@@ -89,10 +89,10 @@ def _add(key, who, role, text, kind="message"):
     def f(d):
         new = key not in d["conversations"]
         c = d["conversations"].setdefault(key, {"user_id": who["id"], "ai_enabled": True, "messages": []})
-        c.update(name=who["name"], username=who["username"], last_activity=time.time())
+        c.update(name=who["name"], username=who["username"], last_activity=time.time(), step=c.get("step", 0) + (role == "user"))
         c["messages"].append({"t": time.time(), "role": role, "kind": kind, "text": text})
         del c["messages"][:-max(1, d["settings"]["history_limit"])]  # bounded history
-        return new, c["ai_enabled"], dict(d["settings"]), list(c["messages"])
+        return new, c["ai_enabled"], dict(d["settings"]), list(c["messages"]), c["step"]
     return store.mutate(f)
 
 async def on_dm(name, ev):
@@ -102,12 +102,13 @@ async def on_dm(name, ev):
         who = {"id": ev.sender_id, "username": getattr(sender, "username", None),
                "name": " ".join(filter(None, [getattr(sender, "first_name", None), getattr(sender, "last_name", None)]))}
         key = f"{name}:{who['id']}"
-        new, conv_ai, s, hist = _add(key, who, "user", ev.raw_text)
+        new, conv_ai, s, hist, step = _add(key, who, "user", ev.raw_text)
         now = time.time()
         if mute.get(key, 0) > now: return
         hits[key] = [t for t in hits.get(key, []) if now - t < 60] + [now]
         if len(hits[key]) > 3:
             mute[key] = now + 120; hits[key] = []; store.log_event("info", f"Rate limit: no replies to {key} for 2 minutes"); return
+        if 1 < step <= len(s["followups"]) + 1: m = s["followups"][step - 2]; await ev.respond(m); _add(key, who, "assistant", m, "followup"); return
         if new and s["greeting_enabled"] and s["greeting"]:
             await ev.respond(s["greeting"]); _add(key, who, "assistant", s["greeting"], "greeting")
         if s["ai_enabled"] and conv_ai:

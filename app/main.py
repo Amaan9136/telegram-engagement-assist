@@ -53,6 +53,9 @@ def put_settings(body: dict):
         if not s["model"] or not s["ollama_url"].startswith(("http://", "https://")): raise HTTPException(400, "Model and a valid http(s) Ollama URL are required")
         for k in ("ai_enabled", "greeting_enabled"):
             if k in body: s[k] = bool(body[k])
+        if "followups" in body:
+            if not isinstance(body["followups"], list): raise HTTPException(400, "followups must be a list")
+            s["followups"] = [str(m).strip() for m in body["followups"] if str(m).strip()]
         if "history_limit" in body:
             try: n = int(body["history_limit"])
             except (TypeError, ValueError): raise HTTPException(400, "history_limit must be a whole number")

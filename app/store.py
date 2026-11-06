@@ -13,7 +13,7 @@ DEFAULT_PROMPT = (
  "- Reply in the user's language.")
 DEFAULT = {
  "settings": {"greeting": "Hi! Thanks for your message.", "greeting_enabled": True, "system_prompt": DEFAULT_PROMPT,
-              "ai_enabled": True, "model": "", "ollama_url": "", "history_limit": 20},
+              "ai_enabled": True, "model": "", "ollama_url": "", "history_limit": 20, "followups": []},
  "broadcast": {"message": "", "messages": [], "pool": [], "delay_seconds": 600, "enabled": False, "paused": False, "next_run": None,
                "last_run": None, "last_status": "", "last_error": ""},
  "accounts": [], "groups": [], "conversations": {}}
